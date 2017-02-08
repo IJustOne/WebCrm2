@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ijustone.crm.mapper.employee.EmployeeMapper">
+
+	<!-- 保存 -->                          
+	<insert id="insert" parameterType="cn.ijustone.crm.domain.employee.Employee" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into t_employee
+		(username,realName,password,tel,email,inputTime,state,department_id,create_date,create_by,
+		modefied_date,modefied_by,photo,sex,account_type,positionStr,job_title)
+		values(#{username},#{realName},#{password},#{tel},#{email},#{inputTime},#{state},#{department.id}
+				,#{createDate},#{createBy},#{modefiedDate},#{modefiedBy},#{photo}
+				,#{sex},#{accountType},#{positionStr},#{jobTitle})
+	</insert>
+
+	<!-- 修改 -->
+	<update id="update" parameterType="cn.ijustone.crm.domain.employee.Employee">
+		update t_employee set
+		username=#{username},realName=#{realName},password=#{password},tel=#{tel},email=#{email},inputTime=#{inputTime},state=#{state},department_id=#{department.id}
+				,create_date=#{createDate},create_by=#{createBy},modefied_date=#{modefiedDate},modefied_by=#{modefiedBy},photo=#{photo}
+				,sex=#{sex},account_type=#{accountType},positionStr=#{positionStr},job_title=#{jobTitle}
+		where id=#{id}
+	</update>
+
+	<!-- 删除 -->
+	<delete id="delete" parameterType="long">
+		delete from t_employee
+		where
+		id=#{id}
+	</delete>
+
+	<!-- 通过id获取 -->
+	<select id="queryById" resultType="cn.ijustone.crm.domain.employee.Employee" parameterType="long">
+		select
+		id,username,realName,password,tel,email,inputTime,state,department_id
+		,create_date as createDate ,create_by as createBy ,modefied_date as modefiedDate ,modefied_by as modefiedBy ,photo as photo 
+		,sex as sex ,account_type as accountType ,positionStr as positionStr ,job_title as jobTitle 
+		from t_employee where id=#{id}
+	</select>
+
+	<!-- 通过所有 -->
+	<select id="queryAll" resultType="cn.ijustone.crm.domain.employee.Employee">
+		select
+		id,username,realName,password,tel,email,inputTime,state,department_id
+		,create_date as createDate ,create_by as createBy ,modefied_date as modefiedDate ,modefied_by as modefiedBy ,photo as photo 
+		,sex as sex ,account_type as accountType ,positionStr as positionStr ,job_title as jobTitle 
+		from t_employee
+	</select>
+	<select id="queryAllByPage" resultType="cn.ijustone.crm.domain.employee.Employee">
+		select
+		id,username,realName,password,tel,email,inputTime,state,department_id
+		,create_date as createDate ,create_by as createBy ,modefied_date as modefiedDate ,modefied_by as modefiedBy ,photo as photo 
+		,sex as sex ,account_type as accountType ,positionStr as positionStr ,job_title as jobTitle 
+		from t_employee
+	</select>
+
+
+
+</mapper> 
